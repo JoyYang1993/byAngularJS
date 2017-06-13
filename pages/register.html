@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="registerApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--移动设备优先-->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Register</title>
+
+    <link href="../framework/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/register.css" rel="stylesheet">
+
+
+
+</head>
+<body id="registerMain">
+   <div class="container" ng-controller="registerController">
+       <form id="registerForm" novalidate name="registerForm">
+           <h1>注册</h1>
+
+           <!--邮箱号-->
+           <input type="email" name="email" id="email" required class="form-control" placeholder="邮箱号" ng-pattern="/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/" value="" ng-model="registerData.email">
+           <span class="glyphicon glyphicon-remove tip" ng-show="registerForm.email.$dirty && registerForm.email.$invalid"></span>
+           <span class="tip registerHint" ng-show="registerForm.email.$dirty && registerForm.email.$invalid">示例：115258@163.com(必须包括@、.和com等)</span>
+
+            <!--密码-->
+           <input type="password" name="psw" id="psw" required class="form-control" placeholder="密码" ng-pattern="/^(\w){6,20}$/" value="" ng-model="registerData.psw">
+           <span class="glyphicon glyphicon-remove tip" ng-show="registerForm.psw.$dirty && registerForm.psw.$invalid"></span>
+           <span class="tip registerHint" ng-show="registerForm.psw.$dirty && registerForm.psw.$invalid">只能输入6-20个字母、数字、下划线</span>
+           <!--确认密码-->
+           <input type="password" name="repsw" id="repsw" required class="form-control" placeholder="确认密码" value="" ng-model="registerData.repsw">
+           <!--<span class="glyphicon glyphicon-remove tip" ng-show="registerForm.psw.nodeValue !== registerForm.repsw.nodeValue"></span>-->
+           <!--验证码-->
+           <input type="text" name="verification" id="verification" required class="form-control" ng-model="registerData.verification" ng-mouseenter="showVer()" placeholder="验证码"><br>
+
+            <!--注册-->
+           <button class="btn btn-primary" type="submit" id="registerBtn" ng-click="register()" ng-disabled="registerForm.email.$pristine || registerForm.email.$dirty && registerForm.email.$invalid || registerForm.psw.$pristine || registerForm.psw.$dirty && registerForm.psw.$invalid || registerForm.repsw.$pristine">注册</button>
+           <button class="btn btn-default" type="reset" id="resetBtn">重置</button>
+
+       </form>
+   </div>
+
+
+
+
+    <script src="../framework/jQuery/jquery.min.js"></script>
+    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../framework/Angular/angular.js"></script>
+    <script src="../js/register.js"></script>
+
+
+</body>
+</html>
