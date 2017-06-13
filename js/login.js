@@ -19,14 +19,6 @@ loginApp.controller('loginController',function ($scope,loginService) {
             //alert(data);
         });
     };
-    //点击重置
-    $scope.reset = function () {
-        $scope.loginData = {
-             username:'',
-             psw:'',
-             remember:true
-         };
-    }
 });
 
 //创建服务：从后台获取数据&&向后台发送数据
