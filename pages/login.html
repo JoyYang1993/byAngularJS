@@ -29,7 +29,7 @@
            <!--记住密码-->
            <input type="checkbox" name="remember" id="remember" ng-checked="loginData.remember" ng-model="loginData.remember"><p>记住密码</p><br>
             <!--BUTTON-->
-           <button class="btn btn-primary" type="submit" id="loginBtn" ng-click="login()" ng-disabled="loginForm.username.$dirty && loginForm.username.$invalid || loginForm.psw.$dirty && loginForm.psw.$invalid">登录</button>
+           <button class="btn btn-primary" type="submit" id="loginBtn" ng-click="login()" ng-disabled="loginForm.username.$pristine || loginForm.username.$dirty && loginForm.username.$invalid || loginForm.psw.$pristine || loginForm.psw.$dirty && loginForm.psw.$invalid">登录</button>
            <button class="btn btn-default" type="reset" id="resetBtn">重置</button>
 
        </form>
