@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="recordApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--移动设备优先-->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Record</title>
+
+    <link href="../framework/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/record.css" rel="stylesheet">
+
+</head>
+<body id="recordMain">
+    <div class="container" ng-controller="recordController">
+        <div id="record">
+            <ul id="recordTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#expend" data-toggle="tab">支出</a>
+                </li>
+                <li>
+                    <a href="#income" data-toggle="tab">收入</a>
+                </li>
+            </ul>
+            <div id="recordContent" class="tab-content">
+                <!--支出-->
+                <div class="tab-pane fade in active" id="expend">
+                    <!--分类-->
+                    <table class="table classify">
+                        <thead>
+                            <tr>
+                                <th>分类</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="classifyChild">
+                                    <select class="form-control" ng-model="recordData.classify">
+                                        <!--衣:服饰、网购、化妆护肤-->
+                                        <optgroup label="衣">
+                                            <option value="0" style="background-color: lightpink">服饰</option>
+                                            <option value="1" style="background-color: lightgreen">网购</option>
+                                            <option value="2" style="background-color: lightgoldenrodyellow">化妆</option>
+                                            <option value="3" style="background-color: lightskyblue">护肤</option>
+                                        </optgroup>
+                                        <!--食：外出吃饭、蔬菜水果、零食、医疗-->
+                                        <optgroup label="食">
+                                            <option value="4" style="background-color: lightyellow">吃饭</option>
+                                            <option value="5" style="background-color: lightgreen">蔬菜</option>
+                                            <option value="6" style="background-color: lightsalmon">水果</option>
+                                            <option value="7" style="background-color: lavenderblush">零食</option>
+                                            <option value="8" style="background-color: lightskyblue">医疗</option>
+                                        </optgroup>
+                                        <!--住：租房、电费、话费、日用品、娱乐-->
+                                        <optgroup label="住">
+                                            <option value="9" style="background-color: lemonchiffon">房租</option>
+                                            <option value="10" style="background-color: lightsalmon">电费</option>
+                                            <option value="11" style="background-color: lightslategrey">话费</option>
+                                            <option value="12" style="background-color: lightpink">日用</option>
+                                            <option value="13" style="background-color: lightseagreen">娱乐</option>
+                                        </optgroup>
+                                        <!--行：交通-->
+                                        <optgroup label="行">
+                                            <option value="14" style="background-color: lightskyblue">交通</option>
+                                        </optgroup>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <!--备注-->
+                    <table class="table remark">
+                        <thead>
+                            <tr>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="text" ng-model="recordData.remark" placeholder="如：望湘园吃饭" class="form-control" id="remark"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--日期-->
+                    <table class="table date">
+                        <thead>
+                        <tr>
+                            <th>日期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="date" ng-model="recordData.date" placeholder="日期" class="form-control" id="date" value=""></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--钱钱-->
+                    <table class="table money">
+                        <thead>
+                        <tr>
+                            <th>Money</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="number" ng-model="recordData.money" min="0" placeholder="￥0.00" class="form-control" id="money"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--计算器-->
+                    <table class="table calculator">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="calculatorDiv">
+                                        <ul>
+                                            <li>7</li>
+                                            <li>8</li>
+                                            <li>9</li>
+                                            <li>+</li>
+                                            <li>4</li>
+                                            <li>5</li>
+                                            <li>6</li>
+                                            <li>-</li>
+                                            <li>1</li>
+                                            <li>2</li>
+                                            <li>3</li>
+                                            <li>×</li>
+                                            <li>0</li>
+                                            <li>C</li>
+                                            <li>=</li>
+                                            <li>÷</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-warning" id="recordBtn" ng-click="apply()">记账</button>
+                </div>
+                <!--收入-->
+                <div class="tab-pane fade" id="income">
+                    <!--分类-->
+                    <table class="table classify">
+                        <thead>
+                        <tr>
+                            <th>分类</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="classifyChild">
+                                    <select class="form-control" ng-model="recordData.classify">
+                                        <option value="0" style="background-color: lightpink">工资</option>
+                                        <option value="1" style="background-color: lightgreen">红包</option>
+                                        <option value="2" style="background-color: lightgoldenrodyellow">兼职</option>
+                                        <option value="3" style="background-color: lightskyblue">投资</option>
+                                        <option value="4" style="background-color: lightsalmon">奖金</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--备注-->
+                    <table class="table remark">
+                        <thead>
+                        <tr>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="text" placeholder="如：北京加维" class="form-control" id="remark1"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--日期-->
+                    <table class="table date">
+                        <thead>
+                        <tr>
+                            <th>日期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="date" placeholder="日期" class="form-control" id="date1" value=""></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--钱钱-->
+                    <table class="table money">
+                        <thead>
+                        <tr>
+                            <th>Money</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="number" min="0" placeholder="￥0.00" class="form-control" id="money1"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!--计算器-->
+                    <table class="table calculator">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="calculatorDiv">
+                                    <ul>
+                                        <li>7</li>
+                                        <li>8</li>
+                                        <li>9</li>
+                                        <li>+</li>
+                                        <li>4</li>
+                                        <li>5</li>
+                                        <li>6</li>
+                                        <li>-</li>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                        <li>×</li>
+                                        <li>0</li>
+                                        <li>C</li>
+                                        <li>=</li>
+                                        <li>÷</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-warning" id="recordBtn1">记账</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../framework/jQuery/jquery.min.js"></script>
+    <script src="../framework/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../framework/Angular/angular.js"></script>
+    <script src="../js/record.js"></script>
+    <script src="../plugins/calculator.js"></script>
+</body>
+</html>
