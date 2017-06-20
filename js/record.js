@@ -12,10 +12,15 @@ var recordApp = angular.module('recordApp',[]);
 recordApp.controller('recordController',function ($scope,recordService) {
     //从页面中获取到的数据
     $scope.recordData = {
-        classify:0,
+        classify:'',
         remark:'',
         date:'',
         money:'',
+    };
+    //计算器
+    $scope.calculator =  function () {
+        //调用服务中的方法
+        recordService.calculatorData($scope.recordData.money)
     };
     //调用服务中的方法，将数据发送到后台
     $scope.apply = function () {
@@ -29,34 +34,24 @@ recordApp.controller('recordController',function ($scope,recordService) {
 recordApp.provider('recordService',function () {
     this.$get = function ($http,$httpParamSerializer) {
         return {
+            //计算器
+            calculatorData:function (moneyInputData) {
+                
+            },
             //向后台发送
             sendRecord:function (recordData,fun) {
-                //声明一个空对象
-                var recordDatas = {};
-                for(var key in recordData){
-                    var val = recordData[key];
-                    if(val){
-                        switch (key){
-                            case 'classify':
-                                recordDatas['classify'] = val;
-                            case 'remark':
-                                recordDatas['remark'] = val;
-                                break;
-                            case 'date':
-                                recordDatas['date'] = val;
-                                break;
-                            case 'money':
-                                recordDatas['money'] = val;
-                                break;
-                        }
+                console.log(recordData)
+                recordData = $httpParamSerializer(recordData);
+                console.log(recordData)
+                //发送到后台
+                $http.get('#',recordData,{
+                    headers:{
+                        "Content-Type":"application/x-www-form-urlencoded"
                     }
-                }
-                console.log(recordDatas)
-                recordDatas = $httpParamSerializer(recordDatas);
-
-                
+                }).success(function (data) {
+                    fun(data);
+                });
             }
-            
         }
     }
 })

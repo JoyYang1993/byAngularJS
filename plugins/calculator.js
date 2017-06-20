@@ -31,7 +31,7 @@ function calc(iNum1, iNum2, sOpr) {
 function doInput() {
     var oInput = $('.active').find('.money').find('input')[0];
     //console.log(oInput)
-    var sHtml=this.innerHTML.replace(' ','');
+    var sHtml=this.innerHTML.replace(' ','');// 方法执行的是查找并替换的操作
 
     switch(sHtml) {
         case '=':
@@ -73,6 +73,7 @@ function doInput() {
             }
             break;
     }
+    $(oInput).trigger('change');
 }
 
 window.onload=function () {
@@ -82,15 +83,6 @@ window.onload=function () {
     for(i=0;i<aLi.length;i++)
     {
         aLi[i].onmousedown=doInput;
-        aLi[i].onmouseover=function ()
-        {
-            this.className='active';
-        };
-
-        aLi[i].onmouseout=function ()
-        {
-            this.className='';
-        };
     }
 
 };

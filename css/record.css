@@ -29,36 +29,15 @@ a {
 .table>thead>tr>th {
     border-bottom: 0px;
 }
-/*支出*/
-/*.classifyChild>div{
-    float: left;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    background-color: white;
-    margin-right: 4%;
-    color: black;
-    padding-top: 5px;
-    cursor: pointer;
-}
-.classifyChild>div:hover,
-.classifyChild>div:focus{
-    color: white;
-}
-.classifyChild>h5{
-    float: left;
-    margin-right: 4%;
-}*/
+/*button*/
 #expend>.btn-warning,
 #income>.btn-warning{
     width: 370px;
-    margin-top: 10px;
 }
 /*计算器*/
 .calculatorDiv{
     width: 100%;
     border-radius: 5px;
-   /* background-color: darkcyan;*/
     margin-top: 10px;
     margin-bottom: 10px;
     overflow: hidden;
