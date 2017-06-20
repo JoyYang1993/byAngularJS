@@ -1,5 +1,5 @@
 #recordMain{
-    background-color: lightskyblue;
+    background-color: lightblue;
     color: lightgoldenrodyellow;
 }
 #recordMain>div>#record{
@@ -33,35 +33,43 @@ a {
 #expend>.btn-warning,
 #income>.btn-warning{
     width: 370px;
+    margin-top: 15px;
+    background-color: lightslategrey;
+    border-color:lightslategrey ;
 }
 /*计算器*/
-.calculatorDiv{
-    width: 100%;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+.calculatorMain{
     overflow: hidden;
 }
-li {
-    list-style: none;
+.calculatorRow{
+    background: lightgrey;
+    box-sizing: border-box;
+    border-bottom: 1px solid #202020;
+    overflow: hidden;
 }
-.calculatorDiv>ul>li {
-    width: 89px;
-    height: 50px;
-    line-height: 50px;
+.calculatorCol{
+    box-sizing: border-box;
+    border-right:1px solid #202020;
     float: left;
-    background-color: #28a4c9;
+    color: #202020;
+    font-size: larger;
     text-align: center;
-    color: navajowhite;
-    font-size: x-large;
-    cursor: pointer;
-    margin-right: 1%;
-    margin-bottom: 3px;
-    border-radius: 5px;
+    line-height: 40px;
 }
-.calculatorDiv>ul>li:first-child,
-.calculatorDiv>ul>li:nth-child(5),
-.calculatorDiv>ul>li:nth-child(9),
-.calculatorDiv>ul>li:nth-child(13){
-    margin-left: -12%;
+.normal{
+    width: 25%;
+}
+.end-no{
+    width: 25%;
+    border-right: none;
+    background: lightcyan;
+    color: black;
+}
+.zero{
+    width: 50%;
+}
+.money  .form-control{
+    border-radius: 0px;
+    border: 0px;
 }

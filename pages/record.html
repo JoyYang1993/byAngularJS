@@ -107,7 +107,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><input type="number" ng-model="recordData.money" min="0" placeholder="￥0.00" class="form-control" id="money"></td>
+                            <td><input type="text" ng-model="recordData.money" placeholder="￥0.00" class="form-control" id="money"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -116,31 +116,16 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="calculatorDiv">
-                                        <ul>
-                                            <li>7</li>
-                                            <li>8</li>
-                                            <li>9</li>
-                                            <li>+</li>
-                                            <li>4</li>
-                                            <li>5</li>
-                                            <li>6</li>
-                                            <li>-</li>
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                            <li>×</li>
-                                            <li>0</li>
-                                            <li>C</li>
-                                            <li>=</li>
-                                            <li>÷</li>
-                                        </ul>
+                                    <div class="calculatorMain">
+                                        <div ng-repeat="item in data" class="calculatorRow">
+                                            <div class="calculatorCol" ng-repeat="a in item" ng-class="showClass($index,a)" ng-click="showResult(a)">{{ a }}</div>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-warning" id="recordBtn" ng-click="apply()">记账</button>
+                    <button class="btn btn-warning" id="recordBtn" ng-click="applyExpend()">记账</button>
                 </div>
                 <!--收入-->
                 <div class="tab-pane fade" id="income">
@@ -200,7 +185,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><input type="number" ng-model="recordData.money" min="0" placeholder="￥0.00" class="form-control" id="money1"></td>
+                            <td><input type="text" ng-model="recordData.money" placeholder="￥0.00" class="form-control" id="money1"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -209,31 +194,16 @@
                         <tbody>
                         <tr>
                             <td>
-                                <div class="calculatorDiv">
-                                    <ul>
-                                        <li>7</li>
-                                        <li>8</li>
-                                        <li>9</li>
-                                        <li>+</li>
-                                        <li>4</li>
-                                        <li>5</li>
-                                        <li>6</li>
-                                        <li>-</li>
-                                        <li>1</li>
-                                        <li>2</li>
-                                        <li>3</li>
-                                        <li>×</li>
-                                        <li>0</li>
-                                        <li>C</li>
-                                        <li>=</li>
-                                        <li>÷</li>
-                                    </ul>
+                                <div class="calculatorMain">
+                                    <div ng-repeat="item in data" class="calculatorRow">
+                                        <div class="calculatorCol" ng-repeat="a in item" ng-class="showClass($index,a)" ng-click="showResult(a)">{{ a }}</div>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-warning" id="recordBtn1" ng-click="apply()">记账</button>
+                    <button class="btn btn-warning" id="recordBtn1" ng-click="applyIncome()">记账</button>
                 </div>
             </div>
         </div>
@@ -242,7 +212,7 @@
 
     <script src="../framework/jQuery/jquery.min.js"></script>
     <script src="../framework/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="../framework/Angular/angular.js"></script>
+    <script src="../framework/Angular/angular.min.js"></script>
     <script src="../js/record.js"></script>
     <script src="../plugins/calculator.js"></script>
 </body>
